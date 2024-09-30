@@ -12,9 +12,6 @@ This is a simple Spring Boot project that demonstrates an Hibernate/JPA API for 
   - [Installation](#installation)
   - [Database Configuration](#database-configuration)
   - [Running the Application](#running-the-application)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Technologies
 
