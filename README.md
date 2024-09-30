@@ -49,7 +49,7 @@ This is a simple Spring Boot project that demonstrates an Hibernate/JPA API for 
 
     ```bash
     git clone https://github.com/alesm88/spring-mvc-university-enrollment-crud.git
-    cd spring-mvc-hibernate-mysql
+    cd spring-boot-challenge
     ```
 
 2. Open the project in your preferred IDE. Personal opinion, Spring Tools 4 for Eclipse
@@ -62,12 +62,12 @@ This is a simple Spring Boot project that demonstrates an Hibernate/JPA API for 
 
 ### Database Configuration
 
-1. Install and configure MySQL Server if you haven't already.
+1. Install and configure MySQL Workbench 8.0 if you haven't already.
 
 2. Create a database:
 
     ```sql
-    CREATE DATABASE springmvcdb;
+    CREATE DATABASE db_universidad;
     ```
 
 3. Update the `src/main/resources/application.properties` file with your MySQL database configurations:
