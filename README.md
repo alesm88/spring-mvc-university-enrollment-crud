@@ -79,7 +79,7 @@ This is a simple Spring Boot project that demonstrates an Hibernate/JPA API for 
     spring.jpa.hibernate.ddl-auto=create-drop
     logging.level.org.hibernate.SQL=debug
     ```
-4. There is a import.sql file with some data of students, professors and subjects that you can use as soon as you start the program
+4. There is a `src/main/resources/import.sql` file with some data of students, professors, subjects and users (specially for the login) that you can use as soon as you start the program
    
 ### Running the Application
 
