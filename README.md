@@ -46,7 +46,7 @@ This is a simple Spring Boot project that demonstrates an Hibernate/JPA API for 
 
     ```bash
     git clone https://github.com/alesm88/spring-mvc-university-enrollment-crud.git
-    cd spring-boot-challenge
+    cd spring-mvc-university-enrollment-crud
     ```
 
 2. Open the project in your preferred IDE. Personal opinion, Spring Tools 4 for Eclipse
