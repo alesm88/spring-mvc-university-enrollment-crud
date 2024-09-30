@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-dark text-white">
+			<div class="card-header" th:text="${title}"></div>
+			<div class="card-body">
+				
+				<form th:action="@{/professors/form}" th:object="${professor}" method="post">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Card Number</label>
+						<div class="col-sm-6">
+							<input type="number" th:field="*{cardNumber}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								th:if="${#fields.hasErrors('cardNumber')}" th:errors="*{cardNumber}"
+								class="form-text text-danger"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Name</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{name}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								class="form-text text-danger"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Surname</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{surname}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"
+								class="form-text text-danger"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Active</label>
+						<div class="col-sm-3">
+							<input type="radio" th:field="*{active}" value="1">
+							<label>Yes</label>
+						</div>
+						<div class="col-sm-3">
+							<input type="radio" th:field="*{active}"  value="0">
+							<label>No</label>
+						</div>
+						<small th:if="${#fields.hasErrors('active')}" th:errors="*{active}"
+						class="form-text text-danger"></small>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" th:value="*{id > 0 ? 'Edit' : 'Create'}"
+								class="btn btn-success" />
+						</div>
+					</div>
+					<input type="hidden" th:field="*{id}" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

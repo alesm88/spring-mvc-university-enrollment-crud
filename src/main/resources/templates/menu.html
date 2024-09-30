@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${title}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+					<a th:href="@{/subjects/list}" class="btn btn-info btn-xs">Subjects</a>
+					<a th:if="${session.username.role.equals('Admin')}" th:href="@{/professors/list}" class="btn btn-secondary btn-xs">Professors</a>
+					<a th:if="${session.username.role.equals('Admin')}" th:href="@{/students/list}" class="btn btn-warning btn-xs">Students</a>
+				</h4>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

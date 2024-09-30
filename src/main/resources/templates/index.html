@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${title}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+					<span th:if="${session.username != null}">
+						<a th:href="@{/menu}" class="btn btn-info btn-xs">Menu</a>
+						<br/>
+						<br/>
+					</span>
+					<a th:if="${session.username == null}" th:href="@{/login}" class="btn btn-primary btn-xs">Login</a>
+					<a th:unless="${session.username == null}" th:href="@{/logout}" class="btn btn-danger btn-xs">Logout</a>
+					<!-- <a th:if="${user.username.equals('empty')}" th:href="@{/login}" class="btn btn-primary btn-xs">Login</a>
+					<a th:unless="${user.username.equals('empty')}" th:href="@{/logout}" class="btn btn-danger btn-xs">Logout</a>
+					-->
+				</h4>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>
