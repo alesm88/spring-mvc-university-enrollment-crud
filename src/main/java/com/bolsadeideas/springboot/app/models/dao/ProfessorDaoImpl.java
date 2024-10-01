@@ -22,7 +22,7 @@ public class ProfessorDaoImpl implements IProfessorDao {
 	
 	@Override
 	public List<Professor> findAllActive() {
-		return em.createQuery("select p from Professor p where p.active=1", Professor.class).getResultList();
+		return em.createQuery("select p from Professor p where p.active=true", Professor.class).getResultList();
 	}
 
 	@Override

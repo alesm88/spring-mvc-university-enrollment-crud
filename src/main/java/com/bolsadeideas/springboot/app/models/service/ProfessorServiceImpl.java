@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.app.models.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bolsadeideas.springboot.app.models.dao.IProfessorDao;
 import com.bolsadeideas.springboot.app.models.entity.Professor;
+import com.bolsadeideas.springboot.app.models.entity.ProfessorDto;
 
 @Service
 public class ProfessorServiceImpl implements IProfessorService {
@@ -23,8 +25,16 @@ public class ProfessorServiceImpl implements IProfessorService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Professor> findAllProfessorsActive() {
-		return professorDao.findAllActive();
+	public List<ProfessorDto> findAllProfessorsActive() {
+		List<Professor> professors = professorDao.findAllActive();
+		return professors.stream()
+				.map(professor -> new ProfessorDto(
+						professor.getId(),
+						professor.getCardNumber(),
+						professor.getSurname() + ", " + professor.getName(),
+						professor.getActive()
+				))
+				.collect(Collectors.toList());
 	}
 
 	@Override
@@ -43,6 +53,20 @@ public class ProfessorServiceImpl implements IProfessorService {
 	@Transactional
 	public void deleteProfessor(Long id) {
 		professorDao.delete(id);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<ProfessorDto> getAllProfessorsDto() {
+		List<Professor> professors = professorDao.findAll();
+		return professors.stream()
+				.map(professor -> new ProfessorDto(
+						professor.getId(),
+						professor.getCardNumber(),
+						professor.getSurname() + ", " + professor.getName(),
+						professor.getActive()
+				))
+				.collect(Collectors.toList());
 	}
 
 }

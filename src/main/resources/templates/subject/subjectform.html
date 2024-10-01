@@ -52,7 +52,7 @@
 								<option value="" disabled selected>Select a professor</option>
 								<option th:each="professor : ${professors}"
 										th:value="${professor.id}"
-										th:text="${professor.surname + ', ' + professor.name}">
+										th:text="${professor.fullname}">
 								</option>
 							</select>
 						</div>

@@ -14,8 +14,7 @@
 					<thead class="thead-dark">
 						<tr>
 							<th>Card Number</th>
-							<th>Name</th>
-							<th>Surname</th>
+							<th>Full name</th>
 							<th>Active</th>
 							<th>Edit</th>
 							<th>Delete</th>
@@ -24,10 +23,9 @@
 					<tbody>
 						<tr th:each="professor: ${professors}">
 							<td th:text="${professor.cardNumber}"></td>
-							<td th:text="${professor.name}"></td>
-							<td th:text="${professor.surname}"></td>
-							<td th:if="${professor.active == 1}" th:text="Yes"></td>
-							<td th:unless="${professor.active == 1}" th:text="No"></td>
+							<td th:text="${professor.fullname}"></td>
+							<td th:if="${professor.active}" th:text="Yes"></td>
+							<td th:unless="${professor.active}" th:text="No"></td>
 							<td th:if="${session.username.role.equals('Admin')}"><a th:href="@{/professors/form/} + ${professor.id}"
 								th:text="'Edit'" class="btn btn-success btn-xs"></a></td>
 							<td th:if="${session.username.role.equals('Admin')}"><a th:href="@{/professors/delete/} + ${professor.id}"

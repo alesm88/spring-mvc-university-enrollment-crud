@@ -17,7 +17,7 @@ public class StudentDaoImpl implements IStudentDao {
 
 	@Override
 	public List<Student> findAll() {
-		return em.createQuery("from Student").getResultList();
+		return em.createQuery("from Student", Student.class).getResultList();
 	}
 
 	@Override

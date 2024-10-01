@@ -19,7 +19,7 @@ public class UserDaoImpl implements IUserDao {
 	
 	@Override
 	public List<User> findAll() {
-		return em.createQuery("from User").getResultList();
+		return em.createQuery("from User", User.class).getResultList();
 	}
 	
 	@Override

@@ -5,15 +5,14 @@ import java.util.List;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name="professors")
 public class Professor extends Person {
 	
 	@NotNull
-	@PositiveOrZero
-	private Integer active;
+	@Column(columnDefinition = "BOOLEAN")
+	private Boolean active;
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="professor")
 	private List<Subject> subjects;
@@ -22,11 +21,11 @@ public class Professor extends Person {
 		subjects = new ArrayList<>();
 	}
 
-	public Integer getActive() {
+	public Boolean getActive() {
 		return active;
 	}
 
-	public void setActive(Integer active) {
+	public void setActive(Boolean active) {
 		this.active = active;
 	}
 

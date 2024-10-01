@@ -19,7 +19,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="subject: ${subjects}">		<!-- th:if="${session.username.role.equals('Admin') || session.username.role.equals('Student') && subject.maxQuota > 0}" --> 
+						<tr th:each="subject: ${subjects}">
 							<td th:text="${subject.name}"></td>
 							<td th:text="${subject.maxQuota}"></td>
 							<td><a th:href="@{/subjects/detail/} + ${subject.id}"

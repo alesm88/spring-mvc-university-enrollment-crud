@@ -26,7 +26,7 @@ public class ProfessorController {
 	@GetMapping("/list")
 	public String list(Model model) {
 		model.addAttribute("title", "List of Professors");
-		model.addAttribute("professors", professorService.findAllProfessors());
+		model.addAttribute("professors", professorService.getAllProfessorsDto());
 		return "professor/professorlist";
 	}
 	
@@ -72,7 +72,7 @@ public class ProfessorController {
 		String messageFlash = (professor.getId() != null)? "Professor edited successfully!" : "Professor created successfully!";
 		
 		professorService.saveProfessor(professor);
-		if (professor.getActive() == 0) {
+		if (!professor.getActive()) { // if it's false, unassigned the professor from subjects
 			subjectService.unassignedProfessor(professor.getId());
 		}
 		
