@@ -15,9 +15,6 @@
 					</span>
 					<a th:if="${session.username == null}" th:href="@{/login}" class="btn btn-primary btn-xs">Login</a>
 					<a th:unless="${session.username == null}" th:href="@{/logout}" class="btn btn-danger btn-xs">Logout</a>
-					<!-- <a th:if="${user.username.equals('empty')}" th:href="@{/login}" class="btn btn-primary btn-xs">Login</a>
-					<a th:unless="${user.username.equals('empty')}" th:href="@{/logout}" class="btn btn-danger btn-xs">Logout</a>
-					-->
 				</h4>
 			</div>
 		</div>
