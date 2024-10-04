@@ -5,13 +5,16 @@ This is a simple Spring Boot project that demonstrates an Hibernate/JPA API for 
 
 ## Table of Contents
 
-- [Technologies](#technologies)
-- [Features](#features)
-- [Setup](#setup)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Database Configuration](#database-configuration)
-  - [Running the Application](#running-the-application)
+- [Spring Project MVC with a CRUD and enrollment for university](#spring-project-mvc-with-a-crud-and-enrollment-for-university)
+  - [Description](#description)
+  - [Table of Contents](#table-of-contents)
+  - [Technologies](#technologies)
+  - [Features](#features)
+  - [Setup](#setup)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [Database Configuration](#database-configuration)
+    - [Running the Application](#running-the-application)
 
 ## Technologies
 
@@ -86,13 +89,19 @@ This is a simple Spring Boot project that demonstrates an Hibernate/JPA API for 
 1. Run the project using Maven:
 
     ```bash
-    mvn spring-boot:run
+    ./mvnw clean install
+    ./mvnw spring-boot:run
+    ```
+2. To run the tests:
+
+    ```
+    ./mvnw test
     ```
 
-2. Access the application by visiting:
+3. Access the application by visiting:
 
     ```
     http://localhost:8080
     ```
-
+    
     If you use a different port, adjust accordingly.
