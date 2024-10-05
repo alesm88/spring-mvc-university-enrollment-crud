@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bolsadeideas.springboot.app.models.entity.Role;
 import com.bolsadeideas.springboot.app.models.entity.User;
 import com.bolsadeideas.springboot.app.models.service.IUserService;
 
@@ -57,25 +58,21 @@ public class IndexController {
 			model.addAttribute("title", "Login");
 			return "login";
 		}
-		/*
-		if (user2 == null) {
-			flash.addFlashAttribute("error", "Username doesn't exist!");
-			return "redirect:/login";
-		}
-		
-		if ( !(user2.getUsername().equals(user.getUsername())) || 
-				!(user2.getPassword().equals(user.getPassword())) || 
-				!(user2.getRole().equals(user.getRole())) ) {
-			flash.addFlashAttribute("error", "Username, password and/or role incorrect!");
-			return "redirect:/login";
-		}
-		*/
+
 		Optional<User> userOptional = userService.login(user.getUsername(), user.getPassword(), user.getRole());
 		if (userOptional.isEmpty()) {
 			flash.addFlashAttribute("error", "Username, password and/or role incorrect!");
 			return "redirect:/login";
 		}
 		
+		Role role;
+		if (user.getRole().equals("Admin")) {
+			role = Role.ADMIN;
+		} else {
+			role = Role.STUDENT;
+		}
+		
+		session.setAttribute("role", role);
 		session.setAttribute("username", user);
 		flash.addFlashAttribute("success", "Welcome " + user.getUsername());
 		return "redirect:/menu";

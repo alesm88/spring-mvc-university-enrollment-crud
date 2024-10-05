@@ -8,7 +8,7 @@
 			<div class="card-header" th:text="${title}"></div>
 			<div class="card-body">
 				<h4 class="card-title">
-					<a th:if="${session.username.role.equals('Admin')}" th:href="@{/subjects/form}" class="btn btn-success btn-xs">Create Subject</a>
+					<a th:if="${session.role.isAdmin()}" th:href="@{/subjects/form}" class="btn btn-success btn-xs">Create Subject</a>
 				</h4>
 				<table class="table table-striped table-bordered">
 					<thead class="thead-dark">

@@ -15,9 +15,9 @@
 							<th>Timetable</th>
 							<th>Available Quota</th>
 							<th>Professor</th>
-							<th th:if="${session.username.role.equals('Admin')}">Edit</th>
-							<th th:if="${session.username.role.equals('Admin')}">Delete</th>
-							<th th:unless="${session.username.role.equals('Admin')}">Enrol</th>
+							<th th:if="${session.role.isAdmin()}">Edit</th>
+							<th th:if="${session.role.isAdmin()}">Delete</th>
+							<th th:unless="${session.role.isAdmin()}">Enrol</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -28,12 +28,12 @@
 							<td th:text="${subject.maxQuota}"></td>
 							<td th:if="${subject.professor == null}" th:text="'Did not assigned yet'"></td>
 							<td th:unless="${subject.professor == null}" th:text="${subject.professor.surname} + ', ' + ${subject.professor.name}"></td>
-							<td th:if="${session.username.role.equals('Admin')}"><a th:href="@{/subjects/form/} + ${subject.id}"
+							<td th:if="${session.role.isAdmin()}"><a th:href="@{/subjects/form/} + ${subject.id}"
 								th:text="'Edit'" class="btn btn-success btn-xs"></a></td>
-							<td th:if="${session.username.role.equals('Admin')}"><a th:href="@{/subjects/delete/} + ${subject.id}"
+							<td th:if="${session.role.isAdmin()}"><a th:href="@{/subjects/delete/} + ${subject.id}"
 								th:text="'Delete'" class="btn btn-danger btn-xs"
 								onclick="return confirm('Are you sure you want to delete it?');"></a></td>
-							<td th:unless="${session.username.role.equals('Admin')}"><a th:href="@{/subjects/enrol/} + ${subject.id}"
+							<td th:unless="${session.role.isAdmin()}"><a th:href="@{/subjects/enrol/} + ${subject.id}"
 								th:text="'Enrol'" class="btn btn-primary btn-xs"></a></td>
 						</tr>
 					</tbody>

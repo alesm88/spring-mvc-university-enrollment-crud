@@ -9,8 +9,10 @@
 			<div class="card-body">
 				<h4 class="card-title">
 					<a th:href="@{/subjects/list}" class="btn btn-info btn-xs">Subjects</a>
-					<a th:if="${session.username.role.equals('Admin')}" th:href="@{/professors/list}" class="btn btn-secondary btn-xs">Professors</a>
-					<a th:if="${session.username.role.equals('Admin')}" th:href="@{/students/list}" class="btn btn-warning btn-xs">Students</a>
+					<!-- <a th:if="${session.username.role.equals('Admin')}" th:href="@{/professors/list}" class="btn btn-secondary btn-xs">Professors</a>
+					<a th:if="${session.username.role.equals('Admin')}" th:href="@{/students/list}" class="btn btn-warning btn-xs">Students</a> -->
+					<a th:if="${session.role.isAdmin()}" th:href="@{/professors/list}" class="btn btn-secondary btn-xs">Professors</a>
+					<a th:if="${session.role.isAdmin()}" th:href="@{/students/list}" class="btn btn-warning btn-xs">Students</a>
 				</h4>
 			</div>
 		</div>

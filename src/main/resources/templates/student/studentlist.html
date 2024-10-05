@@ -8,7 +8,7 @@
 			<div class="card-header" th:text="${title}"></div>
 			<div class="card-body">
 				<h4 class="card-title">
-					<a th:if="${session.username.role.equals('Admin')}" th:href="@{/students/form}" class="btn btn-success btn-xs">Create Student</a>
+					<a th:if="${session.role.isAdmin()}" th:href="@{/students/form}" class="btn btn-success btn-xs">Create Student</a>
 				</h4>
 				<table class="table table-striped table-bordered">
 					<thead class="thead-dark">
@@ -27,9 +27,9 @@
 							<td th:text="${student.fileNumber}"></td>
 							<td th:text="${student.name}"></td>
 							<td th:text="${student.surname}"></td>
-							<td th:if="${session.username.role.equals('Admin')}"><a th:href="@{/students/form/} + ${student.id}"
+							<td th:if="${session.role.isAdmin()}"><a th:href="@{/students/form/} + ${student.id}"
 								th:text="'Edit'" class="btn btn-success btn-xs"></a></td>
-							<td th:if="${session.username.role.equals('Admin')}"><a th:href="@{/students/delete/} + ${student.id}"
+							<td th:if="${session.role.isAdmin()}"><a th:href="@{/students/delete/} + ${student.id}"
 								th:text="'Delete'" class="btn btn-danger btn-xs"
 								onclick="return confirm('Are you sure you want to delete it?');"></a></td>
 						</tr>
