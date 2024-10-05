@@ -20,11 +20,23 @@ public class LoginFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         
         User user = (User) httpRequest.getSession().getAttribute("username");
+        
         if (user != null) {
-        	chain.doFilter(request, response);
+        	// Redirect to index if already logged in
+        	if (httpRequest.getRequestURI().equals("/login")) {
+                httpResponse.sendRedirect("/");
+                return;
+            } else {
+            	chain.doFilter(request, response);
+            }
         } else {
-        	httpResponse.sendRedirect("/login");
-        	// httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN, "You don't have access to this page");
+        	if (httpRequest.getRequestURI().equals("/login")) {
+        		chain.doFilter(request, response);
+        	} else {
+        		httpResponse.sendRedirect("/login");
+        		// httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN, "You don't have access to this page");
+        	}
+        	 
         }
 	}
 }

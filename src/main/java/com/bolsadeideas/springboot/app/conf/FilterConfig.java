@@ -15,7 +15,7 @@ public class FilterConfig {
 	public FilterRegistrationBean<LoginFilter> registerLoginFilter() {
 		FilterRegistrationBean<LoginFilter> registerFilter = new FilterRegistrationBean<>();
 		registerFilter.setFilter(new LoginFilter());
-		registerFilter.addUrlPatterns("/menu", "/subjects/*", "/professors/*", "/students/*");
+		registerFilter.addUrlPatterns("/login", "/menu", "/subjects/*", "/professors/*", "/students/*");
 		registerFilter.setOrder(1);
 		return registerFilter;
 	}
