@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.app.models.service;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,41 +9,51 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.bolsadeideas.springboot.app.models.dao.IProfessorDao;
 import com.bolsadeideas.springboot.app.models.entity.Professor;
 import com.bolsadeideas.springboot.app.models.entity.ProfessorDto;
 
 @SpringBootTest
 class ProfessorServiceImplTest {
 	
-	@Autowired
-	private IProfessorService professorService;
+	@Mock
+	private IProfessorDao professorDao;
 	
-	ProfessorDto p1;
-	ProfessorDto p2;
-	ProfessorDto p3;
+	@InjectMocks
+	private ProfessorServiceImpl professorService;
+	
+	List<Professor> mockProfessor = new ArrayList<>();
+	Professor t1Mock;
 	Professor t1;
 	
 	@BeforeEach
 	void initMethodTest() {
-		p1 = new ProfessorDto(3, 22467458, "Grant, Javier", true);
-		p2 = new ProfessorDto(4, 18724375, "Cluster, Daniel", true);
-		p3 = new ProfessorDto(5, 13598642, "Marchand, Susana", true);
-		t1 = new Professor();
+		MockitoAnnotations.openMocks(this);
+		
+		mockProfessor.add(new Professor(1, 22467458, "Javier", "Grant", true));
+		mockProfessor.add(new Professor(2, 18724375, "Daniel", "Cluster", true));
+		mockProfessor.add(new Professor(3, 13598642, "Susana", "Marchand", true));
+		
+		t1Mock = new Professor(1, 22467458, "Javier", "Grant", true);
 	}
 	
 	@Test
 	@DisplayName("test get all professor active")
 	void testProfessorActive() {
 		
+		when(professorDao.findAllActive()).thenReturn(mockProfessor);
+		
 		List<ProfessorDto> professorsActive = professorService.findAllProfessorsActive();
 		
 		List<ProfessorDto> professorsExpected = new ArrayList<>();
-		professorsExpected.add(p1);
-		professorsExpected.add(p2);
-		professorsExpected.add(p3);
+		professorsExpected.add(new ProfessorDto(1, 22467458, "Grant, Javier", true));
+		professorsExpected.add(new ProfessorDto(2, 18724375, "Cluster, Daniel", true));
+		professorsExpected.add(new ProfessorDto(3, 13598642, "Marchand, Susana", true));
 		
 		assertEquals(professorsExpected, professorsActive);
 	}
@@ -50,7 +61,10 @@ class ProfessorServiceImplTest {
 	@Test
 	@DisplayName("find a specific professor")
 	void testFindProfessor() {
-		t1 = professorService.findProfessor(3L);
+		
+		when(professorDao.findOne(1L)).thenReturn(t1Mock);
+		
+		t1 = professorService.findProfessor(1L);
 		assertAll(
 				() -> assertTrue(t1.getActive()),
 				() -> assertNotNull(t1.getCardNumber()),
