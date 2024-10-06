@@ -3,6 +3,7 @@ package com.bolsadeideas.springboot.app.models.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.bolsadeideas.springboot.app.models.entity.Role;
 import com.bolsadeideas.springboot.app.models.entity.User;
 
 public interface IUserService {
@@ -17,6 +18,6 @@ public interface IUserService {
 	
 	public User findUserByName(String username);
 	
-	public Optional<User> login(String username, String password, String role);
+	public Optional<User> login(String username, String password, Role role);
 	
 }

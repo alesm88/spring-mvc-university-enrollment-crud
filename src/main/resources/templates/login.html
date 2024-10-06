@@ -27,11 +27,11 @@
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Role</label>
 						<div class="col-sm-3">
-							<input type="radio" th:field="*{role}" value="Admin">
+							<input type="radio" th:field="*{role}" value="ADMIN">
 							<label>Admin</label>
 						</div>
 						<div class="col-sm-3">
-							<input type="radio" th:field="*{role}"  value="Student">
+							<input type="radio" th:field="*{role}"  value="STUDENT">
 							<label>Student</label>
 						</div>
 						<small th:if="${#fields.hasErrors('role')}" th:errors="*{role}"

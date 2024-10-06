@@ -20,7 +20,7 @@ public class AdminFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         
         User user = (User) httpRequest.getSession().getAttribute("username");
-        if (user.getRole().equals("Student")) {
+        if (user.getRole().isStudent()) {
         	chain.doFilter(request, response);
         } else {
         	httpResponse.sendRedirect("/index");

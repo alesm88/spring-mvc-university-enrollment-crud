@@ -65,5 +65,13 @@ public class ProfessorDto {
 		return Objects.equals(active, other.active) && Objects.equals(cardNumber, other.cardNumber)
 				&& Objects.equals(fullname, other.fullname) && Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		return "ProfessorDto [id=" + id 
+				+ ", cardNumber=" + cardNumber 
+				+ ", fullname=" + fullname 
+				+ ", active=" + active + "]";
+	}
 	
 }

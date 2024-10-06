@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bolsadeideas.springboot.app.models.dao.IUserDao;
+import com.bolsadeideas.springboot.app.models.entity.Role;
 import com.bolsadeideas.springboot.app.models.entity.User;
 
 @Service
@@ -48,7 +49,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<User> login(String username, String password, String role) {
+	public Optional<User> login(String username, String password, Role role) {
 		return Optional.ofNullable(userDao.findByName(username)).filter(u -> u.getPassword().equals(password) && u.getRole().equals(role));
 	}
 }

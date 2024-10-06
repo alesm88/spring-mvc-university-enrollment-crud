@@ -32,6 +32,18 @@ public class Subject extends BaseEntity {
 	public Subject() {
 		students = new ArrayList<>();
 	}
+	
+	public Subject(Integer id, String name, String description, String timetable, Integer maxQuota, Professor professor) {
+		super(id);
+		this.name = name;
+		this.description = description;
+		this.timetable = timetable;
+		this.maxQuota = maxQuota;
+		this.professor = professor;
+		students = new ArrayList<>();
+	}
+
+
 
 	public String getName() {
 		return name;
@@ -80,4 +92,16 @@ public class Subject extends BaseEntity {
 	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
+
+	@Override
+	public String toString() {
+		return "Subject [name=" + name 
+				+ ", description=" + description 
+				+ ", timetable=" + timetable 
+				+ ", maxQuota="	+ maxQuota 
+				+ ", professor=" + professor 
+				+ ", students=" + students + "]";
+	}
+	
+	
 }

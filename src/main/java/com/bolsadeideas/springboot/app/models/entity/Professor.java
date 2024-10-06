@@ -20,6 +20,12 @@ public class Professor extends Person {
 	public Professor() {
 		subjects = new ArrayList<>();
 	}
+	
+	public Professor(Integer id, Integer cardNumber, String name, String surname, Boolean active) {
+		super(id, cardNumber, name, surname);
+		this.active = active;
+		subjects = new ArrayList<>();
+	}
 
 	public Boolean getActive() {
 		return active;

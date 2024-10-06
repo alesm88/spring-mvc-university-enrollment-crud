@@ -2,6 +2,7 @@ package com.bolsadeideas.springboot.app.models.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="users")
@@ -11,8 +12,9 @@ public class User extends BaseEntity {
 	private String username;
 	@NotEmpty
 	private String password;
-	@NotEmpty
-	private String role;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private Role role;
 	
 	/*
 	@OneToOne
@@ -36,11 +38,11 @@ public class User extends BaseEntity {
 		this.password = password;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 

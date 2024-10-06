@@ -35,7 +35,7 @@ public class SubjectController {
 		
 		User user = (User) session.getAttribute("username");
 		Student student = null;
-		if (user.getRole().equals("Student")) {
+		if (!user.getRole().isAdmin()) {
 			student = studentService.findStudentByCardNumber(Integer.valueOf(user.getUsername()));
 			model.addAttribute("subjects", subjectService.findSubjectsByStudentNotEnrolAndQuota(student.getId()));
 		} else {
@@ -79,7 +79,6 @@ public class SubjectController {
 			user = (User) session.getAttribute("username");
 			subject = subjectService.findSubject(id);
 			student = studentService.findStudentByCardNumber(Integer.valueOf(user.getUsername()));
-			
 			// To avoid that enrolls to the same timetable
 			for (Subject s : subjectService.findSubjectsByStudent(student.getId())) {
 				if (s.getTimetable().equals(subject.getTimetable()) && !s.getName().equals(subject.getName())) {

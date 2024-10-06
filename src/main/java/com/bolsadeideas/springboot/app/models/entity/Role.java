@@ -21,4 +21,8 @@ public enum Role {
 	public Boolean isAdmin() {
 		return this == ADMIN;
 	}
+	
+	public Boolean isStudent() {
+		return this == STUDENT;
+	}
 }

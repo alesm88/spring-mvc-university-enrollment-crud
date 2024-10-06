@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bolsadeideas.springboot.app.models.entity.Role;
 import com.bolsadeideas.springboot.app.models.entity.User;
 import com.bolsadeideas.springboot.app.models.service.IUserService;
 
@@ -26,16 +25,9 @@ public class IndexController {
 	
 	@GetMapping({"/", "/index"})
 	public String index(HttpSession session, Model model) {
-		/*
-		User user = new User();
-		if (session.getAttribute("username") != null) {
-			user = (User) session.getAttribute("username");
-		} else {
-			user.setUsername("empty");
-		}
-		*/
+		
 		model.addAttribute("title", "Main Page");
-		// model.addAttribute("user", user);
+		
 		return "index";
 	}
 	
@@ -52,8 +44,6 @@ public class IndexController {
 	@PostMapping("/login")
 	public String validateLogin(HttpSession session, @Valid User user, BindingResult result, Model model, RedirectAttributes flash) {
 		
-		// User user2 = userService.findUserByName(user.getUsername());
-		
 		if (result.hasErrors()) {
 			model.addAttribute("title", "Login");
 			return "login";
@@ -65,14 +55,7 @@ public class IndexController {
 			return "redirect:/login";
 		}
 		
-		Role role;
-		if (user.getRole().equals("Admin")) {
-			role = Role.ADMIN;
-		} else {
-			role = Role.STUDENT;
-		}
-		
-		session.setAttribute("role", role);
+		session.setAttribute("role", user.getRole());
 		session.setAttribute("username", user);
 		flash.addFlashAttribute("success", "Welcome " + user.getUsername());
 		return "redirect:/menu";

@@ -22,6 +22,13 @@ public class Person extends BaseEntity {
 	public Person() {
 	}
 
+	public Person(Integer id, Integer cardNumber, String name, String surname) {
+		super(id);
+		this.cardNumber = cardNumber;
+		this.name = name;
+		this.surname = surname;
+	}
+
 	public Integer getCardNumber() {
 		return cardNumber;
 	}

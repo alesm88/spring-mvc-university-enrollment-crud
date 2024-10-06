@@ -20,7 +20,7 @@ public class StudentFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         
         User user = (User) httpRequest.getSession().getAttribute("username");
-        if (user.getRole().equals("Admin")) {
+        if (user.getRole().isAdmin()) {
         	chain.doFilter(request, response);
         } else {
         	httpResponse.sendRedirect("/menu");
