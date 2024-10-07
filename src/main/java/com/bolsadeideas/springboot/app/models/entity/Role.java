@@ -1,21 +1,21 @@
 package com.bolsadeideas.springboot.app.models.entity;
 
 public enum Role {
-	ADMIN("This user has privileges to edit or delete"),
-	STUDENT("This user can enrol to subjects");
+	ADMIN("Admin"),
+	STUDENT("Student");
 	
-	private String description;
+	private String displayName;
 	
 	Role() {
 		
 	}
 	
-	Role(String description) {
-		this.description = description;
+	Role(String displayName) {
+		this.displayName = displayName;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDisplayName() {
+		return displayName;
 	}
 	
 	public Boolean isAdmin() {

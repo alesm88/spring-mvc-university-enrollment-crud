@@ -26,14 +26,10 @@
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Role</label>
-						<div class="col-sm-3">
-							<input type="radio" th:field="*{role}" value="ADMIN">
-							<label>Admin</label>
-						</div>
-						<div class="col-sm-3">
-							<input type="radio" th:field="*{role}"  value="STUDENT">
-							<label>Student</label>
-						</div>
+						<div class="col-sm-3" th:each="role : ${roles}">
+        					<input type="radio" th:field="*{role}" th:value="${role.name()}" id="${role.name()}">
+        					<label th:for="${role.name()}" th:text="${role.displayName}"></label>
+    					</div>
 						<small th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
 						class="form-text text-danger"></small>
 					</div>

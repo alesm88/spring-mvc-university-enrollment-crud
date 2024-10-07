@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bolsadeideas.springboot.app.models.entity.Role;
 import com.bolsadeideas.springboot.app.models.entity.User;
 import com.bolsadeideas.springboot.app.models.service.IUserService;
 
@@ -36,6 +37,7 @@ public class IndexController {
 		
 		User user = new User();
 		model.addAttribute("title", "Login");
+		model.addAttribute("roles", Role.values());
 		model.addAttribute("user", user);
 		
 		return "login";
@@ -46,6 +48,7 @@ public class IndexController {
 		
 		if (result.hasErrors()) {
 			model.addAttribute("title", "Login");
+			model.addAttribute("roles", Role.values());
 			return "login";
 		}
 
