@@ -1,3 +1,5 @@
+[![Java CI with Maven](https://github.com/alesm88/spring-mvc-university-enrollment-crud/actions/workflows/maven.yml/badge.svg)](https://github.com/alesm88/spring-mvc-university-enrollment-crud/actions/workflows/maven.yml)
+
 # Spring Project MVC with a CRUD and enrollment for university
 
 ## Description
