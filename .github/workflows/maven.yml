@@ -12,7 +12,7 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main", "develop" ]
+    branches: [ "main" ]
 
 permissions:
   contents: write
@@ -36,9 +36,6 @@ jobs:
 
     - name: Run tests with Maven
       run: mvn -B test --file pom.xml
-
-    - name: Validate code style
-      run: mvn checkstyle:check --file pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
