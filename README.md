@@ -94,6 +94,7 @@ This is a simple Spring Boot project that demonstrates an Hibernate/JPA API for 
     ./mvnw clean install
     ./mvnw spring-boot:run
     ```
+    
 2. To run the tests:
 
     ```
@@ -107,3 +108,9 @@ This is a simple Spring Boot project that demonstrates an Hibernate/JPA API for 
     ```
     
     If you use a different port, adjust accordingly.
+   
+4. Run the project using Docker:
+
+    ```
+    docker-compose up --build
+    ```
