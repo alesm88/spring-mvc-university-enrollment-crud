@@ -17,6 +17,7 @@ This is a simple Spring Boot project that demonstrates an Hibernate/JPA API for 
     - [Installation](#installation)
     - [Database Configuration](#database-configuration)
     - [Running the Application](#running-the-application)
+    - [Running the Application using Docker:](#running-the-application-using-docker)
 
 ## Technologies
 
@@ -109,7 +110,7 @@ This is a simple Spring Boot project that demonstrates an Hibernate/JPA API for 
     
     If you use a different port, adjust accordingly.
    
-4. Run the project using Docker:
+### Running the Application using Docker:
 
     ```
     docker-compose up --build
