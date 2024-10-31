@@ -16,11 +16,14 @@ public class Subject extends BaseEntity {
 	private String description;
 	@NotEmpty
 	private String timetable;
+	@NotNull
+	@PositiveOrZero
+	private Integer enrolled;
 	
 	@NotNull
 	@PositiveOrZero
 	@Column(name="max_quota")
-	private Integer maxQuota;	
+	private Integer maxQuota;
 	
 	@ManyToOne
 	@JoinColumn(name="id_professor")
@@ -33,11 +36,12 @@ public class Subject extends BaseEntity {
 		students = new ArrayList<>();
 	}
 	
-	public Subject(Integer id, String name, String description, String timetable, Integer maxQuota, Professor professor) {
+	public Subject(Integer id, String name, String description, String timetable, Integer enrolled, Integer maxQuota, Professor professor) {
 		super(id);
 		this.name = name;
 		this.description = description;
 		this.timetable = timetable;
+		this.enrolled = enrolled;
 		this.maxQuota = maxQuota;
 		this.professor = professor;
 		students = new ArrayList<>();
@@ -69,6 +73,14 @@ public class Subject extends BaseEntity {
 		this.timetable = timetable;
 	}
 
+	public Integer getEnrolled() {
+		return enrolled;
+	}
+
+	public void setEnrolled(Integer enrolled) {
+		this.enrolled = enrolled;
+	}
+	
 	public Integer getMaxQuota() {
 		return maxQuota;
 	}
@@ -98,6 +110,7 @@ public class Subject extends BaseEntity {
 		return "Subject [name=" + name 
 				+ ", description=" + description 
 				+ ", timetable=" + timetable 
+				+ ", enrolled="	+ enrolled 
 				+ ", maxQuota="	+ maxQuota 
 				+ ", professor=" + professor 
 				+ ", students=" + students + "]";

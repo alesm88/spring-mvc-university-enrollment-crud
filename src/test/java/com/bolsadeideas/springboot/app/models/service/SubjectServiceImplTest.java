@@ -33,9 +33,9 @@ class SubjectServiceImplTest {
 	void initMethodTest() {
 		MockitoAnnotations.openMocks(this);
 		
-		subjectsMock.add(new Subject(1, "Programming", "Basic coding", "Mon 08:00", 10, null));
-		subjectsMock.add(new Subject(2, "Mathematics", "Trigonometry & Logarithms", "Fri 08:30", 15, null));
-		subjectsMock.add(new Subject(3, "English", "Communication in english", "Tue 10:00", 5, null));
+		subjectsMock.add(new Subject(1, "Programming", "Basic coding", "Mon 08:00", 0, 10, null));
+		subjectsMock.add(new Subject(2, "Mathematics", "Trigonometry & Logarithms", "Fri 08:30", 0, 15, null));
+		subjectsMock.add(new Subject(3, "English", "Communication in english", "Tue 10:00", 0, 5, null));
 	}
 	
 	@Test
@@ -46,9 +46,9 @@ class SubjectServiceImplTest {
 		
 		subjects = subjectDao.subjectsByStudentNotEnrolAndQuota(1);
 		assertThat(subjects)
-        	.allSatisfy(subject -> assertThat(subject.getMaxQuota()).isGreaterThan(0));
+        	.allSatisfy(subject -> assertThat(subject.getMaxQuota() - subject.getEnrolled()).isGreaterThan(0));
 		/*for (Subject subject : subjects) {
-            assertTrue(subject.getMaxQuota() > 0);
+            assertTrue((subject.getMaxQuota() - subject.getEnrolled()) > 0);
         }*/
 	}
 	

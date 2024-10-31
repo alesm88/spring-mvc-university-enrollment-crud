@@ -7,8 +7,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: sasa
       MYSQL_DATABASE: db_universidad
-      #MYSQL_USER: root
-      #MYSQL_PASSWORD: sasa
       # In case that I want to use environmental variables
       # This is the command: MYSQL_DATABASE=mydatabase MYSQL_PASSWORD=rootpassword docker-compose up
       # MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -19,6 +17,12 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - springboot-mysql-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "--password=sasa"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
 
   springboot_app:
     build: .
@@ -32,7 +36,8 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
       # SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     networks:
       - springboot-mysql-network
 

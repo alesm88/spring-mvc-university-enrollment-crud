@@ -48,7 +48,7 @@ public class SubjectDaoImpl implements ISubjectDao {
 	
 	@Override
 	public List<Subject> subjectsByStudentNotEnrolAndQuota(Integer idStudent) {
-		return em.createQuery("select m from Subject m WHERE m.maxQuota>0 AND m.id NOT IN (SELECT mat.id FROM Student e JOIN e.subjects mat WHERE e.id=:idStudent)", Subject.class)
+		return em.createQuery("select m from Subject m WHERE m.maxQuota-m.enrolled>0 AND m.id NOT IN (SELECT mat.id FROM Student e JOIN e.subjects mat WHERE e.id=:idStudent)", Subject.class)
 				.setParameter("idStudent", idStudent).getResultList();
 	}
 	

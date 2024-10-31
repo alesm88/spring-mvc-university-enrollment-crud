@@ -89,7 +89,7 @@ public class SubjectController {
 			
 			// Now that there is the method findSubjectsByStudentNotEnrolAndQuota(Integer student.id), this exception is not gonna happen
 			try {
-				subject.setMaxQuota(subject.getMaxQuota()-1);
+				subject.setEnrolled(subject.getEnrolled()+1);
 				student.addSubject(subject);
 				subjectService.saveSubject(subject);
 			} catch (Exception e) {
