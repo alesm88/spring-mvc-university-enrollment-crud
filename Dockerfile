@@ -22,9 +22,6 @@ WORKDIR /app
 # Copy the JAR generated in the previous stage
 COPY --from=build /app/target/*.jar app.jar
 
-# Copy the JAR file generate by Maven in the container
-#COPY target/spring-boot-challenge-0.0.1-SNAPSHOT.jar app.jar
-
 # Expose the port that will run the application
 EXPOSE 8080
 
